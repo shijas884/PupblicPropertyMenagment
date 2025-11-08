@@ -1,13 +1,12 @@
 from django.contrib import admin
-from property_app.models import (LoginRole,LoginUser,
+from property_app.models import (LoginUser,
                                  State,District,Taluk,
                                  Panchayat,PropertyType,
                                  PublicProperty,Attribute,
                                  PropertyDetails
                                  )
 
-# Register your models here.
-admin.site.register(LoginRole)
+# Register your models here
 admin.site.register(LoginUser)
 admin.site.register(State)
 admin.site.register(District)

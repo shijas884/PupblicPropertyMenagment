@@ -2,16 +2,14 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class LoginRole(models.Model):
-    name = models.CharField(max_length=100)
-
-
-    def __str__(self):
-        return  self.name
-
 
 class LoginUser(AbstractUser):
-    role_name = models.ForeignKey(LoginRole, on_delete=models.SET_NULL, null=True, blank=True )
+    class Role(models.TextChoices):
+        ADMIN = 'ADMIN','ADMIN'
+        WRITER = 'WRITER','WRITER'
+        VIEWER = 'VIEWER','VIEWER'
+    
+    role_type = models.CharField(max_length=100,choices=Role.choices,null=True,blank=True)
 
 
 
