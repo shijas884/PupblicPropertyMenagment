@@ -41,6 +41,8 @@ class District(models.Model):
 class Taluk(models.Model):
     name = models.CharField(max_length=100)
     discrete = models.ForeignKey(District, on_delete=models.SET_NULL,blank=True, null=True )
+    # created_by = models.ForeignKey(LoginUser, on_delete=models.SET_NULL, null=True, blank=True)
+    # created_date = models.DateTimeField(auto_now_add=True)
 
 
     def __str__(self):

@@ -3,7 +3,9 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 
-from property_app.models import LoginUser
+from property_app.models import (LoginUser, State, District,Taluk,
+                                 Panchayat
+                                )
 
 
 class RegisterUserSerializer(ModelSerializer):
@@ -41,4 +43,27 @@ class LoginUserSerializer(Serializer):
         return attrs
             
 
-        
+class StateSerializer(ModelSerializer):
+    class Meta:
+        model = State
+        fields = '__all__'
+        read_only_fields = ['created_by', 'created_date']
+
+
+class DistrictSeriaizer(ModelSerializer):
+    class Meta:
+        model = District
+        fields = '__all__'
+        extra_kwargs = {"created_by": {'read_only' : True}}
+
+
+class TalukSerializer(ModelSerializer):
+    class Meta:
+        model = Taluk
+        fields = '__all__'
+
+
+class PanchayatSerializer(ModelSerializer):
+    class Meta:
+        model = Panchayat
+        fields = '__all__'
