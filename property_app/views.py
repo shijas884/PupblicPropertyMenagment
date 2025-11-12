@@ -8,12 +8,14 @@ from rest_framework.generics import (ListCreateAPIView,ListAPIView,
 
 
 from property_app.models import (LoginUser, State, District,
-                                 Taluk,Panchayat
+                                 Taluk,Panchayat,PropertyType,
+                                 PublicProperty,Attribute,PropertyDetails
+
                                 )
 from property_app.serializers import (RegisterUserSerializer,LoginUserSerializer,
                                       StateSerializer,DistrictSeriaizer,TalukSerializer,
-                                      PanchayatSerializer
-
+                                      PanchayatSerializer,PropertyTypeSeriaizer,PublicPropertySerializer,
+                                      AttributeSerializer,PropertyDetailsSerializer
                                       )
 
 from .permissions import IsAdmin,IsWriterOrAdnin,IsViewer
@@ -124,4 +126,75 @@ class PanchayatDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Panchayat.objects.all()
     serializer_class = PanchayatSerializer
     permission_classes = [IsAdmin]
+
+
+# PropertyType view 
+
+class PropertyTypeListView(ListAPIView):
+    queryset = PropertyType.objects.all()
+    serializer_class = PropertyTypeSeriaizer
+    permission_classes = [IsViewer]
+    
+
+class PropertyTypeCreateView(CreateAPIView):
+    queryset = PropertyType.objects.all()
+    serializer_class = PropertyTypeSeriaizer
+    permission_classes = [IsAdmin]
+
+class PropertyTypeDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = PropertyType.objects.all()
+    serializer_class = PropertyTypeSeriaizer
+    permission_classes = [IsAdmin]
+
+# publicproperty views 
+
+class PublicPropertyListView(ListAPIView):
+    queryset = PublicProperty.objects.all()
+    serializer_class = PublicPropertySerializer
+    permission_classes = [IsViewer]
+    
+class PublicPropertyCreateView(CreateAPIView):
+    queryset = PublicProperty.objects.all()
+    serializer_class = PublicPropertySerializer
+    permission_classes = [IsAdmin]
+
+class PublicPropertyDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = PublicProperty.objects.all()
+    serializer_class = PublicPropertySerializer
+    permission_classes = [IsAdmin]
+
+
+# Attribute view
+
+class AttributeListView(ListAPIView):
+    queryset = Attribute.objects.all()
+    serializer_class = AttributeSerializer
+    permission_classes = [IsViewer]
+    
+class AttributeCreateView(CreateAPIView):
+    queryset = Attribute.objects.all()
+    serializer_class = AttributeSerializer
+    permission_classes = [IsAdmin]
+
+class AttributeDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Attribute.objects.all()
+    serializer_class = AttributeSerializer
+    permission_classes = [IsAdmin]
+
+# PropertyDetails views
+
+class PropertyDetailsListView(ListAPIView):
+    queryset = PropertyDetails.objects.all()
+    serializer_class = PropertyDetailsSerializer
+    permission_classes = [IsViewer]
+    
+class PropertyDetailsCreateView(CreateAPIView):
+    queryset = Attribute.objects.all()
+    serializer_class = PropertyDetailsSerializer
+    permission_classes = [IsAdmin]
+
+class PropertyDetailsDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = PropertyDetails.objects.all()
+    serializer_class = PropertyDetailsSerializer
+    permission_classes = [IsWriterOrAdnin]
 
